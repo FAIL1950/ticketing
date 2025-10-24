@@ -8,6 +8,8 @@ if (!process.env.NATS_STREAM_NAME_FOR_PUBLISH) {
     throw new Error('NATS_STREAM_NAME_FOR_PUBLISH must be defined');
 }
 
+console.log('Starting...');
+
 const handleShutdown = async (signal: string) => {
     console.log(`Received ${signal}, starting graceful shutdown...`);
 
