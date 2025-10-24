@@ -7,7 +7,8 @@
     "start": "tsx src/index.ts",
     "dev": "nodemon --exec tsx src/index.ts",
     "test": "jest --watchAll --no-cache",
-    "build": "tsup src/index.ts --format esm --dts"
+    "build": "tsup src/index.ts --format esm --dts",
+    "test:ci": "tsc --noEmit && jest"
   },
   "jest": {
     "preset": "ts-jest",
