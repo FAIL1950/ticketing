@@ -1,0 +1,40 @@
+{
+  "name": "expiration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "dev": "nodemon --exec tsx src/index.ts",
+    "test": "jest --no-cache --watchAll",
+    "test:ci": "tsc --noEmit && jest --no-cache",
+    "build": "tsup src/index.ts --format esm --dts"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test/setup.ts"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.4",
+    "tsup": "^8.5.0"
+  },
+  "dependencies": {
+    "@agotickets/common": "^1.0.24",
+    "@types/bull": "^3.15.9",
+    "@types/node": "^24.5.2",
+    "bull": "^4.16.5",
+    "nats": "^2.29.3",
+    "nodemon": "^3.1.10",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

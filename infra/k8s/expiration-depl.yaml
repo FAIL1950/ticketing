@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expiration-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expiration
+  template:
+    metadata:
+      labels:
+        app: expiration
+    spec:
+      initContainers:
+        - name: wait-for-nats
+          image: busybox:1.28
+          command: [ 'sh', '-c', 'until nc -z nats-srv 4222; do echo waiting for nats-srv; sleep 2; done;' ]
+        - name: wait-for-redis
+          image: busybox:1.28
+          command: [ 'sh', '-c', 'until nc -z expiration-redis-srv 6379; do echo waiting for expiration-redis-srv; sleep 2; done;' ]
+      containers:
+        - name: expiration
+          image: fail1950/expiration
+          env:
+            - name: NATS_STREAM_NAME_FOR_PUBLISH
+              value: "EXPIRATION"
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: REDIS_HOST
+              value: expiration-redis-srv

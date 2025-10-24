@@ -1,0 +1,1 @@
+export const durableName = 'payments-service';
