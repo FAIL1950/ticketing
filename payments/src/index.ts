@@ -24,6 +24,8 @@ if (!process.env.STRIPE_KEY) {
 
 let server: Server;
 
+console.log('Starting...');
+
 const handleShutdown = async (signal: string) => {
     console.log(`Received ${signal}, starting graceful shutdown...`);
 

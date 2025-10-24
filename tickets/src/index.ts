@@ -23,6 +23,8 @@ if (!process.env.NATS_STREAM_NAME_FOR_PUBLISH) {
 
 let server: Server;
 
+console.log('Starting...');
+
 const handleShutdown = async (signal: string) => {
     console.log(`Received ${signal}, starting graceful shutdown...`);
 
